@@ -6,6 +6,6 @@ FOR EACH ROW
 BEGIN
     INSERT INTO audit_log (operation_type, table_name, affected_row_id, details)
      VALUES ('DELETE', 'user', OLD.id, CONCAT('User deleted: ', OLD.name, ' -email--> ', OLD.email));
-END;
+END$$
 
 DELIMITER ;
