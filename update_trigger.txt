@@ -1,0 +1,12 @@
+DELIMITER $$
+
+CREATE TRIGGER after_user_update
+AFTER UPDATE ON user_entity_cl
+FOR EACH ROW
+BEGIN
+   INSERT INTO audit_log (operation_type, table_name, affected_row_id, details)
+     VALUES ('UPDATE', 'User', OLD.id, CONCAT('User updated: ', OLD.name, ' user ----> ', NEW.name, 
+     ' ,email:', OLD.email, ' -----> ', NEW.email));
+END$$
+
+DELIMITER ;
